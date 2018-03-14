@@ -31,19 +31,13 @@ class PersoneriaController extends Controller
 
 
 
-        if($request)
-        {
-            $query = trim($request->get('searchText'));
-            $personeria=DB::table('personeria')
-            ->where('nombre','like','%'.$query.'%')
-            // ->orwhere('hoja_ruta','like','%'.$query.'%')
-            // ->orwhere('domicilio','like','%'.$query.'%')
-            ->where('estado', '=', '1')
+        
+            $personeria= Personeria::where('estado', '=', '1')
             ->orderBy('idpersoneria','desc')
             ->paginate(4);
 
-            return view('archivos.personeria.index',["personeria"=>$personeria,"searchText"=>$query]);
-        }
+            return view('archivos.personeria.index',compact('personeria'));
+     
 
     }
 
