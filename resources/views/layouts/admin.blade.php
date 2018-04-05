@@ -74,8 +74,9 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Online</small>
-                  <span class="hidden-xs">Pelautranquilo</span>
+                  <small class="bg-red">En Linea</small>
+                  <span class="hidden-xs">{{ Auth::user()->name }} </span>
+                  
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -91,7 +92,15 @@
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                      <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                         onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                                     Salir
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                       </form>
                     </div>
                   </li>
                 </ul>
@@ -235,7 +244,7 @@
 
       
     <!-- jQuery 2.1.4 -->
-    <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script>
+   {{--  <script src="{{asset('js/jQuery-2.1.4.min.js')}}"></script> --}}
     <!-- Bootstrap 3.3.5 -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
